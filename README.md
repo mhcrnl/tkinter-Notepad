@@ -1,4 +1,4 @@
-# Notepad using tkinter
+# Python Notepad using Tkinter
 
 A replication of windows notepad using tkinter python GUI library
 

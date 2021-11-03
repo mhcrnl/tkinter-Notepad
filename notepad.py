@@ -80,6 +80,9 @@ class Notepad:
         self.root.config(menu = self.menu_bar)
 
     def push(self):
+        """ ------------------------------------------------------------------------------- 
+        Actualizeaza codul pe github 
+        --------------------------------------------------------------------------------"""
         os.system('./gitpush.sh')
 
 
@@ -261,7 +264,7 @@ class Notepad:
 
 
     def view_help(self):
-        webbrowser.open_new('https://github.com/Ayan-Kumar-Saha/tkinter-Notepad/blob/master/README.md')
+        webbrowser.open_new('https://github.com/mhcrnl/tkinter-Notepadd')
 
 
     def configure(self):

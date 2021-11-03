@@ -1,0 +1,12 @@
+#!/usr/bin/pytho3
+# -*- coding: utf-8 -*-
+# FILE: notepad_v_01.py
+# RUN : python3 notepad_v_01.py
+# __________________________________________BEGIN file
+from tkinter import *
+
+class Notepad:
+
+    
+
+#---------------------------------------------END file
