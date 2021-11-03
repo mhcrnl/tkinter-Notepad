@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 # TODO: 
 # Add Key bindings + Keys shortcuts to the menu
 # Add new window tab
@@ -72,9 +74,13 @@ class Notepad:
         self.help_submenu.add_command(label = 'Send Feedback', command = self.send_feedback)
         self.help_submenu.add_separator()
         self.help_submenu.add_command(label = 'About Notepad', command = self.about_notepad)
+        self.help_submenu.add_command(label = 'Github push', command = self.push)
         self.menu_bar.add_cascade(label = 'Help', menu = self.help_submenu)
 
         self.root.config(menu = self.menu_bar)
+
+    def push(self):
+        os.system('./gitpush.sh')
 
 
     def create_text_area(self):
