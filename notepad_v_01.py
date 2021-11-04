@@ -29,11 +29,26 @@ class Notepad(tk.Frame):
         self.menu_bar.add_cascade(label="Help", menu=self.help)
         
         self.parent.config(menu=self.menu_bar)
+        #===========================================================
+        # ADD TEXT AREA
+        #==========================================================
+        self.text_area = tk.Text(self.parent, font="Lucida 14",undo=True)
+        self.create_text_area()
     #================================================================
-    # ACTUALIZAREA CODULUI PE GITHUB
+    # ACTUALIZAREA CODULUI PE GITHUB(executa fila gitpush.sh)
     #================================================================
     def push(self):
         os.system("./gitpush.sh")
+    #===============================================================
+    def create_text_area(self):
+        # text area 
+        self.text_area.pack(expand=True, fill="both")
+        # scroll bar
+        self.scroll_bar = tk.Scrollbar(self.text_area)
+        self.scroll_bar.pack(side = tk.RIGHT, fill=tk.Y)
+        self.scroll_bar.config(command=self.text_area.yview)
+        
+        self.text_area.config(yscrollcommand=self.scroll_bar.set)
         
 if __name__ == '__main__':
     root = tk.Tk()
