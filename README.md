@@ -1,6 +1,8 @@
-# Python Notepad using Tkinter
 
+#Python Notepad using Tkinter
+![](texteditor.png) 
 A replication of windows notepad using tkinter python GUI library
+
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
