@@ -31,17 +31,20 @@ class Notepad:
         self.root.tk.call('wm', 'iconphoto', self.root._w, img)
 
         # menu bar and text area
-        self.menu_bar = Menu(self.root)
+        self.menu_bar = Menu(self.root, background='#ff8000')
         self.text_area = Text(self.root, font = "Lucida 13", undo = True)
    
-    
-    #creating status bar at the bottom
+    #======================================================================
+    # creating status bar at the bottom
+    #======================================================================
     def status_bar(self):
         self.statusvar = StringVar()
         self.statusvar.set("Created By A")
         self.sbar = Label(self.root,textvariable=statusvar,relief=SUNKEN,font=("cursive",10,"bold"),anchor="e",background="darkolivegreen")
         self.sbar.pack(side=BOTTOM,fill=X)
-        
+    #=============================================================================
+    # Menu Bar
+    #============================================================================
     def create_menu_bar(self):
         
         # File Submenu
@@ -78,14 +81,16 @@ class Notepad:
         self.menu_bar.add_cascade(label = 'Help', menu = self.help_submenu)
 
         self.root.config(menu = self.menu_bar)
-
+    #=====================================================================================
+    #=====================================================================================
     def push(self):
         """ ------------------------------------------------------------------------------- 
         Actualizeaza codul pe github 
         --------------------------------------------------------------------------------"""
         os.system('./gitpush.sh')
-
-
+    #=============================================================================
+    #
+    #============================================================================
     def create_text_area(self):
         # text area 
         self.text_area.pack(expand = True, fill = BOTH)
@@ -248,14 +253,14 @@ class Notepad:
 
 
     def about_notepad(self):
-        tmsg.showinfo('About Notepad', 'Developed by Ayan Kumar Saha')
+        tmsg.showinfo('About Notepad', 'Developed by MIHAI CORNEL')
 
 
     def send_feedback(self):
         answer = tmsg.askyesno('Feedback', 'Do you like my project?')
         if answer == True:
             if tmsg.askyesno('Give Rating', 'Would you take a moment to give a star to my GitHub repository?'):
-                webbrowser.open_new('https://github.com/Ayan-Kumar-Saha/tkinter-Notepad')
+                webbrowser.open_new('https://github.com/mhcrnl/tkinter-Notepad')
             else:
                 tmsg.showinfo(message = 'Thank you for your feedback!')
 
@@ -264,7 +269,7 @@ class Notepad:
 
 
     def view_help(self):
-        webbrowser.open_new('https://github.com/mhcrnl/tkinter-Notepadd')
+        webbrowser.open_new('https://github.com/mhcrnl/tkinter-Notepad')
 
 
     def configure(self):

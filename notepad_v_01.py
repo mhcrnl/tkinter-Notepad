@@ -6,6 +6,7 @@
 import tkinter as tk
 import os
 from tkinter import filedialog as fd
+from tkinter.colorchooser import askcolor
 import time 
 
 class Notepad(tk.Frame):
@@ -25,6 +26,18 @@ class Notepad(tk.Frame):
         self.file_submenu.add_command(label="Save", command=self.save)
         self.file_submenu.add_command(label="Exit", command=self.quit)
         self.menu_bar.add_cascade(label="File", menu=self.file_submenu)
+        #=============================================================
+        # Edit Menu
+        #============================================================
+        self.edit = tk.Menu(self.menu_bar, tearoff=0)
+        self.edit.add_command(label="Clear All", command=self.clearall)
+        self.menu_bar.add_cascade(label="Edit", menu=self.edit)
+        #=============================================================
+        # View Menu
+        #=============================================================
+        self.view = tk.Menu(self.menu_bar, tearoff=0)
+        self.view.add_command(label="Background", command=self.background)
+        self.menu_bar.add_cascade(label="View",menu=self.view) 
         #=============================================================
         #    HELP MENU
         #=============================================================
@@ -55,6 +68,20 @@ class Notepad(tk.Frame):
                                    command=self.shutdownComputer)
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+
+    #==============================================================
+    # Tk text clearall
+    #==============================================================
+    def clearall(self):
+        self.text_area.delete(1.0, tk.END)
+    #===============================================================
+    # Tk Text backgroud
+    #===============================================================
+    def background(self):
+        (triple, color)=askcolor()
+        if color:
+            self.text_area.config(background=color)
+    
     #================================================================
     # ACTUALIZAREA CODULUI PE GITHUB(executa fila gitpush.sh)
     #================================================================
