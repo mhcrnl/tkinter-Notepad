@@ -9,6 +9,7 @@ from tkinter import filedialog as fd
 from tkinter.colorchooser import askcolor
 import time
 import datetime
+import webbrowser
 
 class Notepad(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -58,6 +59,8 @@ class Notepad(tk.Frame):
         self.help = tk.Menu(self.menu_bar, tearoff=0)
         self.help.add_command(label="View help")
         self.help.add_command(label="Github push",command=self.push)
+        self.help.add_command(label="About", command=self.about)
+        self.help.add_command(label="Web site", command=self.web)
         self.menu_bar.add_cascade(label="Help", menu=self.help)
         
         self.parent.config(menu=self.menu_bar)
@@ -71,6 +74,9 @@ class Notepad(tk.Frame):
         #============================================================
         p1 = tk.PhotoImage(file="texteditor.png")
         self.parent.iconphoto(False, p1)
+
+        self.createPopup()
+        self.parent.bind("<Button-3>", self.doPopup)
         #===========================================================
         # add toolbar icons
         #============================================================
@@ -82,6 +88,65 @@ class Notepad(tk.Frame):
                                    command=self.shutdownComputer)
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+
+    #### ===========================================================
+    ### deschide browserul
+    #### ===========================================================
+    def web(self):
+        webbrowser.open('https://github.com/mhcrnl/tkinter-Notepad')
+
+    #### ===============================================================
+    ### Meniul About
+    #### ==============================================================
+    def about(self):
+        ad = tk.Toplevel(self.parent)
+        txt = "Programmer: Mihai Cornel\n Realised by mhcrnl(c)copyright 2020"
+        la = tk.Label(ad,text=txt,foreground='blue')
+        la.pack()
+
+    #### ================================================================
+    ### Clear popup menu function
+    #### ===============================================================
+    def clear(self):
+        sel=self.text_area.get(tk.SEL_FIRST, tk.SEL_LAST)
+        self.text_area.delete(tk.SEL_FIRST, tk.SEL_LAST)
+
+    #### ===========================================================
+    ### Paste popup menu function
+    #### ===========================================================
+    def paste(self):
+        try:
+            teext=self.text_area.selection_get(selection='CLIPBOARD')
+            self.text_area.insert(tk.INSERT,teext)
+        except:
+            showerror('ERROR',"Your can't paste something ")
+        
+
+    #### ========================================================
+    ### Create popup menu
+    #### ========================================================
+    def createPopup(self):
+        self.popup = tk.Menu(self.parent, tearoff=0, bd=5)
+        self.popup.add_command(label='Copy', command=self.copy)
+        self.popup.add_command(label="Paste", command=self.paste)
+        self.popup.add_command(label="Clear", command=self.clear)
+
+    #### =========================================================
+    ### Display popup menu
+    #### =========================================================
+    def doPopup(self, event):
+        try:
+            self.popup.tk_popup(event.x_root, event.y_root)
+        finally:
+            self.popup.grab_release()
+        
+    #### =========================================================
+    ### Copy function in clipboard
+    #### =========================================================
+    def copy(self):
+        self.text_area.clipboard_clear()
+        self.text_area.clipboard_append(self.text_area.selection_get())
+    
 
     #### =========================================
     ### Function to italic text
