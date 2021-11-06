@@ -1,9 +1,50 @@
-
 #Python Notepad using Tkinter
 ![](texteditor.png) 
 A replication of windows notepad using tkinter python GUI library
 
+#### =========================================
+### Function to italic text
+#### =========================================
+```
+def italic():
+    text.config(font=('Segio UI',20,'italic'))
+```
+#### ================================
+### Function to underline text
+#### ================================
+```
+def underline():
+    text.config(font=('Segio UI',20,'underline'))
+``` 
 
+### Adding function to print hour
+```
+ def ora(self):
+        ora=time.localtime()
+        self.text_area.insert(tk.INSERT, ora)
+```
+Access: Edit>Insert hour
+
+### Adding function to print a line
+```
+def line():
+    line="-"*60
+    self.text_area.insert(tk.INSERT, line)
+```
+Access: Edit>Insert line
+
+### Adding the datetime module
+```import datetime```
+
+Create the function date():
+```python
+def date(self):
+    data = datetime.date.today()
+    self.text_area.insert(tk.INSERT, data)
+```
+Access: Edit>Insert date
+
+![](img.png)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 

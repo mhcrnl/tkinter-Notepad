@@ -7,7 +7,8 @@ import tkinter as tk
 import os
 from tkinter import filedialog as fd
 from tkinter.colorchooser import askcolor
-import time 
+import time
+import datetime
 
 class Notepad(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -31,12 +32,25 @@ class Notepad(tk.Frame):
         #============================================================
         self.edit = tk.Menu(self.menu_bar, tearoff=0)
         self.edit.add_command(label="Clear All", command=self.clearall)
+        self.edit.add_command(label="Insert date", command=self.date)
+        self.edit.add_command(label="Insert hour", command=self.ora)
+        self.edit.add_command(label="Insert line", command=self.line)
         self.menu_bar.add_cascade(label="Edit", menu=self.edit)
+        #=============================================================
+        # Options menu
+        #=============================================================
+        self.options = tk.Menu(self.menu_bar, tearoff=0)
+        self.options.add_command(label="Text normal", command=self.normal)
+        self.options.add_command(label="Text bold", command=self.bold)
+        self.options.add_command(label="Text underline", command=self.underline)
+        self.options.add_command(label="Text italic", command=self.italic)
+        self.menu_bar.add_cascade(label="Options", menu=self.options)
         #=============================================================
         # View Menu
         #=============================================================
         self.view = tk.Menu(self.menu_bar, tearoff=0)
         self.view.add_command(label="Background", command=self.background)
+        self.view.add_command(label="Text")
         self.menu_bar.add_cascade(label="View",menu=self.view) 
         #=============================================================
         #    HELP MENU
@@ -69,6 +83,50 @@ class Notepad(tk.Frame):
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
 
+    #### =========================================
+    ### Function to italic text
+    #### =========================================
+    def italic(self):
+       self.text_area.config(font=('Segio UI',20,'italic'))
+
+    #### =========================================================
+    ### Function to underline text
+    #### ==========================================================
+    def underline(self):
+        self.text_area.config(font=('Segio UI',20,'underline'))
+    
+    #==========================================================
+    # Function to bold text
+    #=========================================================
+    def bold(self):
+        self.text_area.config(font=('Segio UI', 20, "bold"))
+
+    #==========================================================
+    # Function text normal
+    #==========================================================
+    def normal(self):
+        self.text_area.config(font=("Segio UI", 20))
+        
+    #============================================================
+    # Function to insert hour
+    #===========================================================
+    def ora(self):
+        ora=time.localtime()
+        self.text_area.insert(tk.INSERT, ora)
+
+    #============================================================
+    # Function to insert a line in tk.Text
+    #============================================================
+    def line(self):
+        line="-"*60
+        self.text_area.insert(tk.INSERT, line)
+
+    #==============================================================
+    # Function to insert date
+    #============================================================
+    def date(self):
+        data = datetime.date.today()
+        self.text_area.insert(tk.INSERT, data)
     #==============================================================
     # Tk text clearall
     #==============================================================
