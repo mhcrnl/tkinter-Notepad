@@ -52,19 +52,7 @@ class Notepad(tk.Frame):
         self.view = tk.Menu(self.menu_bar, tearoff=0)
         self.view.add_command(label="Background", command=self.background)
         self.view.add_command(label="Text")
-        self.menu_bar.add_cascade(label="View",menu=self.view)
-        #### ========================================================
-        ### Markdown menu
-        #### =======================================================
-        self.mark = tk.Menu(self.menu_bar, tearoff=0)
-        self.mark.add_command(label="Title",    command=self.title)
-        self.mark.add_command(label="Subtitle", command=self.subtitle)
-        self.mark.add_command(label="Subsubtitle", command=self.subsubtitle)
-        self.mark.add_command(label="Heading 4", command=self.heading4)
-        self.mark.add_command(label="Heading 5", command=self.heading5)
-        self.mark.add_command(label="Heading 6", command=self.heading6)
-        self.mark.add_command(label="Bold text", command=self.markBold)
-        self.menu_bar.add_cascade(label="Markdown", menu=self.mark)
+        self.menu_bar.add_cascade(label="View",menu=self.view) 
         #=============================================================
         #    HELP MENU
         #=============================================================
@@ -100,55 +88,6 @@ class Notepad(tk.Frame):
                                    command=self.shutdownComputer)
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
-
-    #### ==========================================================
-    ### Markdown insert bold
-    #### =========================================================
-    def markBold(self):
-        line = " **TEXT** "
-        self.text_area.insert(tk.INSERT, line)
-
-    #### ==========================================================
-    ### Markdown insert heding6
-    #### =========================================================
-    def heading6(self):
-        line = "###### "
-        self.text_area.insert(tk.INSERT, line)
-
-    #### ==========================================================
-    ### Markdown insert heding5
-    #### =========================================================
-    def heading5(self):
-        line = "##### "
-        self.text_area.insert(tk.INSERT, line)
-
-    #### ==========================================================
-    ### Markdown insert heding4
-    #### =========================================================
-    def heading4(self):
-        line = "#### "
-        self.text_area.insert(tk.INSERT, line)
-
-    #### ==========================================================
-    ### Markdown insert subsubtitle
-    #### =========================================================
-    def subsubtitle(self):
-        line = "### "
-        self.text_area.insert(tk.INSERT, line)
-
-    #### ==========================================================
-    ### Markdown insert subtitle
-    #### =========================================================
-    def subtitle(self):
-        line = "## "
-        self.text_area.insert(tk.INSERT, line)
-
-    #### ==========================================================
-    ### Markdown insert title
-    #### =========================================================
-    def title(self):
-        line = "#  New title"*1
-        self.text_area.insert(tk.INSERT, line)
 
     #### ===========================================================
     ### deschide browserul
@@ -311,11 +250,23 @@ class Notepad(tk.Frame):
     #=============================================================
     def shutdownComputer(self):
         os.system("shutdown now")
+
+    def main():
+        root = tk.Tk()
+        root.geometry("800x600")
+        root.title("Python Tkinter Notepad")
+        Notepad(root).pack(side="top", fill="both")
+        root.mainloop()
+    
         
 if __name__ == '__main__':
+
+    Notepad().main()
+    '''
     root = tk.Tk()
     root.geometry("800x600")
     root.title("Python Tkinter Notepad")
     Notepad(root).pack(side="top", fill="both")
     root.mainloop()
+    '''
 #--------------------------------------------------------------END file
