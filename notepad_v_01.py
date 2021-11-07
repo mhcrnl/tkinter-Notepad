@@ -10,6 +10,7 @@ from tkinter.colorchooser import askcolor
 import time
 import datetime
 import webbrowser
+import tkinter.messagebox as tk2
 
 class Notepad(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -23,7 +24,7 @@ class Notepad(tk.Frame):
         #          1.A File Submenu
         #=============================================================
         self.file_submenu = tk.Menu(self.menu_bar, tearoff=0)
-        self.file_submenu.add_command(label="New")
+        self.file_submenu.add_command(label="New", command=self.newFile)
         self.file_submenu.add_command(label="Open", command=self.open)
         self.file_submenu.add_command(label="Save", command=self.save)
         self.file_submenu.add_command(label="Exit", command=self.quit)
@@ -64,7 +65,24 @@ class Notepad(tk.Frame):
         self.mark.add_command(label="Heading 5", command=self.heading5)
         self.mark.add_command(label="Heading 6", command=self.heading6)
         self.mark.add_command(label="Bold text", command=self.markBold)
+        self.mark.add_command(label="Italic text", command=self.markItalic)
+        self.mark.add_command(label="Italic Bold", command=self.italicBold)
+        self.mark.add_command(label="Blockquotes", command=self.blockquotes)
+        self.mark.add_command(label="Lists", command=self.lists)
+        self.mark.add_command(label="Unordered Lists", command=self.unordered)
+        self.mark.add_command(label="Code", command=self.code)
+        self.mark.add_command(label="Images", command=self.images)
+        self.mark.add_command(label="Links", command=self.links)
+        self.mark.add_command(label="Url insert", command=self.url)
+        self.mark.add_command(label="Email", command=self.email)
         self.menu_bar.add_cascade(label="Markdown", menu=self.mark)
+        #### ==============================================================
+        ### Python Menu
+        #### =============================================================
+        self.pyth = tk.Menu(self.menu_bar, tearoff=0)
+        self.pyth.add_command(label="Tk window", command=self.tkwin)
+        self.pyth.add_command(label="ttk.Label", command=self.ttkLabel)
+        self.menu_bar.add_cascade(label="Python", menu=self.pyth)
         #=============================================================
         #    HELP MENU
         #=============================================================
@@ -100,6 +118,102 @@ class Notepad(tk.Frame):
                                    command=self.shutdownComputer)
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+
+    #### ========================================================
+    ### New function
+    #### ========================================================
+    def newFile(self):
+        if(tk2.askyesno("Message", "Unseved work will be lost. Continue?")):
+            self.text_area.delete("1.0", tk.END)
+
+    #### =========================================================
+    ### ttkLabel
+    #### =========================================================
+    def ttkLabel(self):
+        line = """        self.label = ttk.Label(self, text='Hello')
+        self.label.pack() """
+        self.text_area.insert(tk.INSERT, line)
+    #### ==========================================================
+    ### Python insert tkwin
+    #### =========================================================
+    def tkwin(self):
+        line ="""#!/usr/bin/env python3\n# -*- coding: utf-8 -*-
+# FILE: __main__.py\n# RUN : python3 __main__.py\n# AUTHOR: mhcrnl@gmail.com\n
+import tkinter as tk\nfrom tkinter import ttk
+from tkinter.messagebox import showinfo\nclass App(tk.Tk):
+    def __init__(self):\n        super().__init__()\n\n
+if __name__ == "__main__":\n    app = App()\n    app.mainloop()\n"""
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert email
+    #### =========================================================
+    def email(self):
+        line = "<mhcrnl@gmail.com>"
+        self.text_area.insert(tk.INSERT, line)
+        
+    #### ==========================================================
+    ### Markdown insert url
+    #### =========================================================
+    def url(self):
+        line = "<https://github.com/mhcrnl/tkinter-Notepad>"
+        self.text_area.insert(tk.INSERT, line)
+        
+    #### ==========================================================
+    ### Markdown insert links
+    #### =========================================================
+    def links(self):
+        line = "[Markdown Guide](https://www.markdownguide.org/basic-syntax/#headings)"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert images
+    #### =========================================================
+    def images(self):
+        line = "![name_of_image](/asset/images/tux.png)"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert code
+    #### =========================================================
+    def code(self):
+        line = "```\n Insert code \n``` "
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert unordered
+    #### =========================================================
+    def unordered(self):
+        line = "- Item"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert lists
+    #### =========================================================
+    def lists(self):
+        line = "1. List"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert blockquotes
+    #### =========================================================
+    def blockquotes(self):
+        line = "> TEXT"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert italic bold
+    #### =========================================================
+    def italicBold(self):
+        line = " ***ItalicBold*** "
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==========================================================
+    ### Markdown insert italic
+    #### =========================================================
+    def markItalic(self):
+        line = " *ITALIC* "
+        self.text_area.insert(tk.INSERT, line)
 
     #### ==========================================================
     ### Markdown insert bold
