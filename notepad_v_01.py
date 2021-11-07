@@ -91,6 +91,7 @@ class Notepad(tk.Frame):
         self.help.add_command(label="Github push",command=self.push)
         self.help.add_command(label="About", command=self.about)
         self.help.add_command(label="Web site", command=self.web)
+        self.help.add_command(label="Word Count", command=self.wordCount)
         self.menu_bar.add_cascade(label="Help", menu=self.help)
         
         self.parent.config(menu=self.menu_bar)
@@ -119,6 +120,15 @@ class Notepad(tk.Frame):
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
 
+    #### ========================================================
+    ### Help word count function
+    #### ========================================================
+    def wordCount(self):
+        userText = self.text_area.get("1.0", tk.END)
+        wordList = userText.split()
+        number_of_words = len(wordList)
+        tk2.showinfo("Word Count", "Words: " + str(number_of_words))
+        
     #### ========================================================
     ### New function
     #### ========================================================
@@ -275,7 +285,7 @@ if __name__ == "__main__":\n    app = App()\n    app.mainloop()\n"""
     #### ==============================================================
     def about(self):
         ad = tk.Toplevel(self.parent)
-        txt = "Programmer: Mihai Cornel\n Realised by mhcrnl(c)copyright 2020"
+        txt = "Programmer: Mihai Cornel\n Realised by mhcrnl(c)copyright noi2021"
         la = tk.Label(ad,text=txt,foreground='blue')
         la.pack()
 
