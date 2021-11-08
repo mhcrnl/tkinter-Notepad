@@ -76,13 +76,27 @@ class Notepad(tk.Frame):
         self.mark.add_command(label="Url insert", command=self.url)
         self.mark.add_command(label="Email", command=self.email)
         self.menu_bar.add_cascade(label="Markdown", menu=self.mark)
-        #### ==============================================================
+        #### ========================================================
         ### Python Menu
+        #### ==========================================================
+        self.python = tk.Menu(self.menu_bar, tearoff=0)
+        self.python.add_command(label="Console", command=self.console)
+        self.python.add_command(label="Print", command=self.pyprint)
+        self.python.add_command(label="Single comment", command=self.scom)
+        self.python.add_command(label="Multi comment", command=self.mcom)
+        self.python.add_command(label="Variable", command=self.variable)
+        self.python.add_command(label="List", command=self.pylist)
+        self.python.add_command(label="Tuples", command=self.pytuple)
+        self.python.add_command(label="Dict", command=self.pydict)
+        self.python.add_command(label="If", command=self.pyif)
+        self.menu_bar.add_cascade(label="Python", menu=self.python)
+        #### ==============================================================
+        ### tkinter Menu
         #### =============================================================
         self.pyth = tk.Menu(self.menu_bar, tearoff=0)
         self.pyth.add_command(label="Tk window", command=self.tkwin)
         self.pyth.add_command(label="ttk.Label", command=self.ttkLabel)
-        self.menu_bar.add_cascade(label="Python", menu=self.pyth)
+        self.menu_bar.add_cascade(label="Tkinter", menu=self.pyth)
         #=============================================================
         #    HELP MENU
         #=============================================================
@@ -119,6 +133,68 @@ class Notepad(tk.Frame):
                                    command=self.shutdownComputer)
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+
+    #### ==================================================
+    ### Python if
+    #### ==================================================
+    def pyif(self):
+        line = "if expresion:\n    statements(s)"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==================================================
+    ### Python dict insert
+    #### =================================================
+    def pydict(self):
+        line = " dict = {'nume':'mihai', 'prenume':'cornel', 'code':345}"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### =================================================
+    ### Python tuples insert
+    #### =================================================
+    def pytuple(self):
+        line = "\"\"\"\nTuple is read-only lists.\n\"\"\"\ntuple = ('abcd', 786, 2.23, 'mihai')"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ==================================================
+    ### Python list insert
+    #### ===================================================
+    def pylist(self):
+        line = "mylist = ['abcd', 267, 2.45, 'mihai', 23.0]"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ====================================================
+    ### Create variable
+    #### =====================================================
+    def variable(self):
+        line = "myVariable = var"
+        self.text_area.insert(tk.INSERT, line)
+
+    #### ====================================================
+    ### Start console
+    #### =====================================================
+    def console(self):
+        os.system("python3")
+
+    #### =======================================================
+    ### Python multi line comment
+    #### =======================================================
+    def mcom(self):
+        line = ("\"\"\"\n Comment\n\"\"\"")
+        self.text_area.insert(tk.INSERT, line)
+    
+    #### =======================================================
+    ### Python single comment line
+    #### ======================================================
+    def scom(self):
+        line = "# Comment"
+        self.text_area.insert(tk.INSERT, line)
+        
+    #### =======================================================
+    ### Python print function insert
+    #### =======================================================
+    def pyprint(self):
+        line = "print(\"Text to print\")"
+        self.text_area.insert(tk.INSERT, line)
 
     #### ========================================================
     ### Help word count function
@@ -375,7 +451,7 @@ if __name__ == "__main__":\n    app = App()\n    app.mainloop()\n"""
     # Function to insert date
     #============================================================
     def date(self):
-        data = datetime.date.today()
+        data = time.asctime(time.localtime(time.time()))# datetime.date.today()
         self.text_area.insert(tk.INSERT, data)
     #==============================================================
     # Tk text clearall
