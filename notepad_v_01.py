@@ -46,6 +46,7 @@ class Notepad(tk.Frame):
         self.options.add_command(label="Text bold", command=self.bold)
         self.options.add_command(label="Text underline", command=self.underline)
         self.options.add_command(label="Text italic", command=self.italic)
+        self.options.add_command(label="Terminal", command=self.startTerm)
         self.menu_bar.add_cascade(label="Options", menu=self.options)
         #=============================================================
         # View Menu
@@ -96,6 +97,7 @@ class Notepad(tk.Frame):
         self.pyth = tk.Menu(self.menu_bar, tearoff=0)
         self.pyth.add_command(label="Tk window", command=self.tkwin)
         self.pyth.add_command(label="ttk.Label", command=self.ttkLabel)
+        self.pyth.add_command(label="ttk.Button", command=self.ttkButton)
         self.menu_bar.add_cascade(label="Tkinter", menu=self.pyth)
         #=============================================================
         #    HELP MENU
@@ -133,6 +135,22 @@ class Notepad(tk.Frame):
                                    command=self.shutdownComputer)
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+
+    #### =================================================
+    ### ttk.Button function
+    #### ================================================
+    def ttkButton(self):
+        line = ("\"\"\"\n w = ttk.Button(master,option=value, ...)\n\"\"\"\n")
+        self.text_area.insert(tk.INSERT, line)
+        line2 = "self.exit_btn = ttk.Button(self, text=\"Exit\", command=self.quit)"
+        self.text_area.insert(tk.INSERT, line2)
+        line3 = "\nself.exit_btn.pack()"
+        self.text_area.insert(tk.INSERT, line3)
+    #### ================================================
+    ### Start terminal
+    #### ================================================
+    def startTerm(self):
+        os.system("gnome-terminal 'sudo apt-get update'")
 
     #### ==================================================
     ### Python if
