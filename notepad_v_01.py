@@ -10,6 +10,7 @@ from tkinter.colorchooser import askcolor
 import time
 import datetime
 import webbrowser
+import shutil
 import tkinter.messagebox as tk2
 
 class Notepad(tk.Frame):
@@ -95,6 +96,7 @@ class Notepad(tk.Frame):
         ### tkinter Menu
         #### =============================================================
         self.pyth = tk.Menu(self.menu_bar, tearoff=0)
+        self.pyth.add_command(label="Tk Template", command=self.templates)
         self.pyth.add_command(label="Tk window", command=self.tkwin)
         self.pyth.add_command(label="ttk.Label", command=self.ttkLabel)
         self.pyth.add_command(label="ttk.Button", command=self.ttkButton)
@@ -135,6 +137,12 @@ class Notepad(tk.Frame):
                                    command=self.shutdownComputer)
         self.closeCalc.pack(side=tk.LEFT)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+
+    #### =================================================
+    ### tkinter templates
+    #### =================================================
+    def templates(self):
+        shutil.copy("./Templates/__main__.py", "./NewApp/__main__.py")
 
     #### =================================================
     ### ttk.Button function

@@ -2,6 +2,13 @@
 ![](texteditor.png) 
 A replication of windows notepad using tkinter python GUI library
 
+```python
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+# FILE : __main__.py
+# RUN  : python3 __main__.py
+```
+
 #### =========================================
 ### Function to italic text
 #### =========================================
