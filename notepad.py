@@ -1,3 +1,7 @@
+# Resolve text bluryness on Windows Operating System.
+from ctypes import windll
+windll.shcore.SetProcessDpiAwareness(1)
+
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # TODO: 
