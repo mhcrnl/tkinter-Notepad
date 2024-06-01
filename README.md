@@ -102,6 +102,14 @@ Run the notepad using,
 ~$ python notepad.py
 ```
 
+### Windows in Detached mode
+This way the Notepad will not close if the command prompt is closed.     
+Also adds icon to the taskbar instead of using generic Python icon.  
+
+```
+~$ pythonw notepad.py
+```
+
 ## Build with
 
 * [tkinter](https://docs.python.org/3/library/tkinter.html) - A python library for creating GUI-based application. 
